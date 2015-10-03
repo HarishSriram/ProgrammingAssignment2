@@ -1,15 +1,35 @@
-## Put comments here that give an overall description of what your
-## functions do
+## function to take input of a matrix and cache the transpose of the matrix
 
-## Write a short comment describing this function
-
-makeCacheMatrix <- function(x = matrix()) {
-
+makeCacheMatrix<-function(x = matrix()){
+    #setting object for solve
+    s<-NULL
+    set<- function(y){
+        x<<-y
+        s<<-NULL
+    }
+    # get input for matrix
+    get<-function()x
+    #setting matrix with Solve function
+    setinverse<-function(solve)s<<- solve
+    #getting the matrix and the object
+    getmatrix<-function() s
+    #setting up a list for all the global environment objects
+    list(set=set,get=get,setmatrix=setmatrix,getmatrix=getmatrix)
+    
 }
-
-
-## Write a short comment describing this function
-
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+cacheSolve<-function(x,...){
+    s<-x$getmatrix()
+    #checking if the cache already exists
+    if(!is.null(s)){
+        message("Printing Cached Data")
+        return (m)
+    }
+    #getting data for the matrix
+    data<- x$get()
+    #passing the data to the function
+    s<- solve(data,...)
+    #calling the setinverse function
+    x$setinverse(s)
+    #returning the inverse
+    return (s)
 }
